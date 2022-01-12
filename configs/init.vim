@@ -51,22 +51,28 @@ Plug 'ErichDonGubler/vim-sublime-monokai'
 Plug 'sainnhe/gruvbox-material'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-Plug 'lewis6991/gitsigns.nvim'
+"Plug 'lewis6991/gitsigns.nvim' "Отключение плагина в связи с
+"производительностью
 
 call plug#end()
-
-" Настройка lsp клиента
-" Включаем lua для подключения lsp
-lua << EOF
-require'lspconfig'.csharp_ls.setup{}
-require('gitsigns').setup()
-EOF
 
 " Настройка плагина cmp
 set completeopt=menu,menuone,noselect
 
+" Блок настроек на языке lua
 lua << EOF
--- Setup nvim-cmp
+--require'lspconfig'.csharp_ls.setup{} --в случае, если буду использовать csharp_ls server
+--vim.lsp.set_log_level("debug") -- включать эту опцию стоит только для получения debug логов. Осторожно - ухудшает производительность
+--require('gitsigns').setup() --Отключение плагина из-за проблем с производительностью
+
+-- настройка lspserver omnisharp
+local pid = vim.fn.getpid()
+local omnisharp_bin = "/home/lin0ge/.omnisharp/OmniSharp" --указывается абсолютный путь до исполняющего файла
+require'lspconfig'.omnisharp.setup{
+    cmd = { omnisharp_bin, "--languageserver", "--hostPID", tostring(pid) };
+}
+
+-- настройка плагина cmp
 local cmp = require'cmp'
 
 cmp.setup({
@@ -114,10 +120,7 @@ require('lspconfig')['csharp_ls'].setup {
     capabilities = capabilities
 }
 
-EOF
-
-" Настройка плагина nvim-treesitter
-lua << EOF
+-- Настройка плагина nvim-treesitter
 require'nvim-treesitter.configs'.setup {
     highlight = {
         enable = true,
@@ -128,6 +131,7 @@ require'nvim-treesitter.configs'.setup {
         },
     }
 }
+
 EOF
 
 
@@ -139,7 +143,7 @@ nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 
 
 " Устанавливаем цветовую схему
-" colorscheme sublimemonokai
+ colorscheme sublimemonokai
 
 if has('termguicolors')
     set termguicolors
