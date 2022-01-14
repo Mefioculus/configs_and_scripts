@@ -55,6 +55,7 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'kyazdani42/nvim-web-devicons' "Плагин для добавления иконок, хорошо работает с Telescope
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'ggandor/lightspeed.nvim'
+Plug 'kdheepak/tabline.nvim' "Плагин для улучшения полосы закладок
 "Plug 'lewis6991/gitsigns.nvim' "Отключение плагина в связи с
 "производительностью
 
@@ -64,8 +65,6 @@ Plug 'ggandor/lightspeed.nvim'
 "Плагин для визуального отображения отступов
 "Plug 'lukas-reineke/indent-blankline.nvim'
 
-"Плагин для изменения tabline в стиле lualine
-"Plug 'kdheepak/tabline.nvim'
 
 "Плагин для ведения записей
 "Plug 'nvim-orgmode/orgmode'
@@ -156,6 +155,7 @@ require'nvim-treesitter.configs'.setup {
 require'nvim-web-devicons'.setup {} -- Добавлене иконок
 require('lualine').setup() -- Добавление статус строки lualine
 require'lightspeed'.setup {} -- Плагин для быстрого перемещения по файлу
+require'tabline'.setup {} -- Плагин для полосы закладок
 
 EOF
 
