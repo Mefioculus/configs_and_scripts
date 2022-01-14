@@ -20,7 +20,8 @@ syntax enable
 
 " Подключаем сворачивание блоков кода по синтаксису
 set foldenable
-set foldmethod=syntax
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
 
 " Устанавливаем относительную нумерацию строк
 set number relativenumber
@@ -46,13 +47,28 @@ Plug 'hrsh7th/vim-vsnip'
 
 Plug 'nvim-treesitter/nvim-treesitter', { 'do' : 'TSUpdate' }
 
-Plug 'itchyny/lightline.vim'
+"Plug 'itchyny/lightline.vim'
 Plug 'ErichDonGubler/vim-sublime-monokai'
 Plug 'sainnhe/gruvbox-material'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'kyazdani42/nvim-web-devicons' "Плагин для добавления иконок, хорошо работает с Telescope
+Plug 'nvim-lualine/lualine.nvim'
+Plug 'ggandor/lightspeed.nvim'
 "Plug 'lewis6991/gitsigns.nvim' "Отключение плагина в связи с
 "производительностью
+
+
+"Плагины, которые стоит попробовать в будущем
+
+"Плагин для визуального отображения отступов
+"Plug 'lukas-reineke/indent-blankline.nvim'
+
+"Плагин для изменения tabline в стиле lualine
+"Plug 'kdheepak/tabline.nvim'
+
+"Плагин для ведения записей
+"Plug 'nvim-orgmode/orgmode'
 
 call plug#end()
 
@@ -112,10 +128,18 @@ cmp.setup.cmdline(':', {
 local pid = vim.fn.getpid()
 local omnisharp_bin = "/home/lin0ge/.omnisharp/OmniSharp" --указывается абсолютный путь до исполняющего файла
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+-- Настройка lsp сервера для omnisharp
 require('lspconfig')['omnisharp'].setup {
     capabilities = capabilities,
     cmd = { omnisharp_bin, "--languageserver", "--hostPID", tostring(pid) }
 }
+
+-- Настройка lsp сервера для csharp_ls
+--require('lspconfig')['csharp_ls'].setup {
+--    capabilities = capabilities,
+--    cmd = { "csharp-ls" }
+--}
 
 -- Настройка плагина nvim-treesitter
 require'nvim-treesitter.configs'.setup {
@@ -128,6 +152,10 @@ require'nvim-treesitter.configs'.setup {
         },
     }
 }
+
+require'nvim-web-devicons'.setup {} -- Добавлене иконок
+require('lualine').setup() -- Добавление статус строки lualine
+require'lightspeed'.setup {} -- Плагин для быстрого перемещения по файлу
 
 EOF
 
@@ -149,4 +177,4 @@ set background=dark
 let g:gruvbox_material_background = 'hard'
 colorscheme gruvbox-material
 
-let g:lightline = {'colorscheme' : 'gruvbox_material'}
+"let g:lightline = {'colorscheme' : 'gruvbox_material'}
