@@ -102,13 +102,14 @@ cmp.setup({
             c = cmp.mapping.close(),
         }),
         ["<CR>"] = cmp.mapping.confirm({ select = true}),
+    },
     sources = cmp.config.sources({
         { name = 'nvim_lsp'},
         { name = 'vsnip' },
         }, {
         { name = 'buffer' },
         })
-    })
+})
     
 cmp.setup.cmdline('/', {
     sources = {
