@@ -155,7 +155,17 @@ require'nvim-treesitter.configs'.setup {
 require'nvim-web-devicons'.setup {} -- Добавлене иконок
 require('lualine').setup() -- Добавление статус строки lualine
 require'lightspeed'.setup {} -- Плагин для быстрого перемещения по файлу
-require'tabline'.setup {} -- Плагин для полосы закладок
+
+-- Плагин для полосы закладок
+require'tabline'.setup {
+    enable = true,
+    options = {
+        show_tabs_always = false,
+        show_devicons = true,
+        show_bufnr = false,
+        show_filename_only = true
+    }
+}
 
 EOF
 
