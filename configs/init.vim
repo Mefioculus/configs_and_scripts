@@ -91,6 +91,8 @@ cmp.setup({
         end,
     },
     mapping = {
+        ['<Tab>'] = cmp.mapping.select_next_item(),
+        ['<S-Tab>'] = cmp.mapping.select_prev_item(),
         ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
         ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
         ['<C-Space>'] = cmp.mapping(cmp.mapping.scroll_docs(), { 'i', 'c' }),
@@ -100,7 +102,6 @@ cmp.setup({
             c = cmp.mapping.close(),
         }),
         ["<CR>"] = cmp.mapping.confirm({ select = true}),
-    },
     sources = cmp.config.sources({
         { name = 'nvim_lsp'},
         { name = 'vsnip' },
