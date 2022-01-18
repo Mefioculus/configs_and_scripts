@@ -3,6 +3,9 @@ set tabstop=4
 set shiftwidth=4
 set smarttab
 set expandtab
+set noswapfile "Отключение создания swap файлов при работе nvim
+
+inoremap jk <ESC>
 
 "Настраивание автоматических отступов
 set autoindent
@@ -44,6 +47,8 @@ Plug 'hrsh7th/nvim-cmp'
 
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
+
+Plug 'onsails/lspkind-nvim'
 
 Plug 'nvim-treesitter/nvim-treesitter', { 'do' : 'TSUpdate' }
 
@@ -166,6 +171,17 @@ require'tabline'.setup {
         show_devicons = true,
         show_bufnr = false,
         show_filename_only = true
+    }
+}
+
+-- Плагин для отображения источника автокомплита (с красивыми иконками)
+local lspkind = require('lspkind')
+cmp.setup {
+    formatting = {
+        format = lspkind.cmp_format({
+            with_text = true, -- do not show text alongside icons
+            maxwirth = 50, -- prevent the popup from showing more than provided character
+        })
     }
 }
 
