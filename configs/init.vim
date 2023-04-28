@@ -133,7 +133,7 @@ cmp.setup.cmdline(':', {
 -- Настройка omnisharp вместе с cmp
 local pid = vim.fn.getpid()
 local omnisharp_bin = "/home/lin0ge/.omnisharp/OmniSharp" --указывается абсолютный путь до исполняющего файла
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 -- Настройка lsp сервера для omnisharp
 require('lspconfig')['omnisharp'].setup {
