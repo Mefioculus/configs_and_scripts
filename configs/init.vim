@@ -5,7 +5,8 @@ set smarttab
 set expandtab
 set noswapfile "Отключение создания swap файлов при работе nvim
 
-inoremap jk <ESC>
+"inoremap jk <ESC> "Данная функция отключена, потому что не очень корректно
+"работает, когда в режиме ввода информации вводится j
 
 "Настраивание автоматических отступов
 set autoindent
@@ -28,6 +29,7 @@ set foldexpr=nvim_treesitter#foldexpr()
 
 " Устанавливаем относительную нумерацию строк
 set number relativenumber
+
 
 "Наcтраиваем курсор
 let &t_SI.="\e[5 q"
@@ -84,6 +86,9 @@ lua << EOF
 --require'lspconfig'.csharp_ls.setup{} --в случае, если буду использовать csharp_ls server
 --vim.lsp.set_log_level("debug") -- включать эту опцию стоит только для получения debug логов. Осторожно - ухудшает производительность
 --require('gitsigns').setup() --Отключение плагина из-за проблем с производительностью
+
+-- Настраиваем  leader на 'Space'
+vim.g.mapleader = ' '
 
 -- настройка плагина cmp
 local cmp = require'cmp'
@@ -146,6 +151,33 @@ require('lspconfig')['omnisharp'].setup {
 --    capabilities = capabilities,
 --    cmd = { "csharp-ls" }
 --}
+
+-- Настройка lsp сервера для rust-analyzer
+-- default
+require'lspconfig'.rust_analyzer.setup{}
+
+
+--local on_attach = function(client)
+--    require'completion'.on_attach(client)
+--end
+
+--require'lspconfig'.rust_analyzer.setup({
+--    on_attach=on_attach,
+--    settings = {
+--        ["rust-analyzer"] = {
+--            assist = {
+--                importGranularity = "module",
+--                importPrefix = "self",
+--            },
+--            cargo = {
+--                loadOutDirsFromCheck = true
+--            },
+--            procMacro = {
+--                enable = true
+--            },
+--        }
+--    }
+--})
 
 -- Настройка плагина nvim-treesitter
 require'nvim-treesitter.configs'.setup {
