@@ -6,10 +6,8 @@ require("nvim-treesitter.configs").setup({
             additional_vim_regex_highlighting = false,
         },
     },
-    --parser_install_dir = "/usr/local/lib/nvim/parser"
+    parser_install_dir = "/usr/local/lib/nvim/"
 })
-
---vim.opt.runtimepath:append("/usr/local/lib/nvim/parser");
 
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
