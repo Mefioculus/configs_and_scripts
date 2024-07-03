@@ -1,3 +1,14 @@
+
+require('telescope').setup{
+    pickers = {
+        find_files = {
+            hidden = true,
+            no_ignore = true,
+        }
+    }
+
+}
+
 local builtin = require('telescope.builtin')
 
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
