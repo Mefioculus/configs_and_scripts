@@ -20,6 +20,9 @@ local M = {
 
         },
     },
+    keys = {
+        {"<leader>ind", "<cmd>Neorg index<cr>", desc = "Go to Index"},
+    }
 }
 
 vim.wo.foldlevel = 99
