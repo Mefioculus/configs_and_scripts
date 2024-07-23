@@ -7,6 +7,7 @@ local M = {
             ["core.defaults"] = {},
             ["core.concealer"] = {
                 folds = True,
+                init_open_folds = "always",
             },
             ["core.dirman"] = {
                 config = {
