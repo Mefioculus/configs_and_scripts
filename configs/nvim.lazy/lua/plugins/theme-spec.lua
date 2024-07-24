@@ -9,4 +9,18 @@ return {
         end,
         opts = {},
     },
+    {
+        'folke/tokyonight.nvim',
+        name = 'tokyonight',
+        lazy = true,
+        priority = 1000,
+        opts = {},
+    },
+    {
+        'catppuccin/nvim',
+        name = 'catppuccin',
+        lazy = true,
+        priority = 1000,
+        opts = {},
+    },
 }

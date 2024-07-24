@@ -1,32 +1,32 @@
-local M = {
-    'nvim-neorg/neorg',
-    lazy = false,
-    version = "*",
-    opts = {
-        load = {
-            ["core.defaults"] = {},
-            ["core.concealer"] = {
-                folds = True,
-                init_open_folds = "always",
-            },
-            ["core.dirman"] = {
-                config = {
-                    workspaces = {
-                        notes = "~/notes",
+return {
+        'nvim-neorg/neorg',
+        lazy = false,
+        version = '*',
+        config = function()
+            require('neorg').setup {
+                load = {
+                    ['core.defaults'] = {},
+                    ['core.concealer'] = {
+                        config = {
+                            folds = true,
+                            init_open_folds = 'never',
+                        },
                     },
-                    default_workspace = "notes",
-
+                    ['core.dirman'] = {
+                        config = {
+                            workspaces = {
+                                notes = '~/notes',
+                            },
+                            default_workspace = 'notes',
+                        },
+                    },
                 },
-            },
+            }
 
+            vim.wo.foldlevel = 99
+            vim.wo.conceallevel = 2
+            end,
+        keys = {
+            {"<leader>ind", "<cmd>Neorg index<cr>", desc = "Go to Index"},
         },
-    },
-    keys = {
-        {"<leader>ind", "<cmd>Neorg index<cr>", desc = "Go to Index"},
-    }
 }
-
-vim.wo.foldlevel = 99
-vim.wo.conceallevel = 2
-
-return M
