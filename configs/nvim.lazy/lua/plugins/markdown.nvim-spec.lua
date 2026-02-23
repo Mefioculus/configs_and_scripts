@@ -4,7 +4,9 @@ return {
         name = 'render-markdown',
         dependencies = { 'nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
         config = function()
-            require('render-markdown').setup({})
+            require('render-markdown').setup({
+                latex = { enabled = false}
+            })
         end,
     },
 }
