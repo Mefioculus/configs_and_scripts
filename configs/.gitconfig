@@ -1,0 +1,6 @@
+[user]
+        name = Mefioculus
+        email = lin0ge@yandex.ru
+[core]
+        editor = nvim
+        quotepath = false
